@@ -20,13 +20,22 @@ public class FigureSpawner : MonoBehaviour
     [SerializeField]private float Delay = 0.25f;
     public float figuresAmount = 10;
 
+    private Coroutine currentCoroutine;
+
     void Start()
     {
-        StartCoroutine(SpawnFiguresCoroutine(figuresAmount));    
+        SpawnFiguresMethod();
     }
 
     public IEnumerator SpawnFiguresCoroutine(float AmountOItems) 
     {
+        if (SpawnedFigures.Count > 0) 
+        {
+            foreach (var spawnedObj in SpawnedFigures) 
+            {
+                Destroy(spawnedObj);
+            }
+        }
 
         for (int i = 0; i < AmountOItems; i++)
         {
@@ -43,6 +52,15 @@ public class FigureSpawner : MonoBehaviour
             yield return new WaitForSeconds(Delay);
         }
 
+    }
+
+    public void SpawnFiguresMethod() 
+    {
+        if (currentCoroutine != null) 
+        {
+            StopCoroutine(currentCoroutine);
+        }
+        currentCoroutine = StartCoroutine(SpawnFiguresCoroutine(figuresAmount));
     }
 
 }
