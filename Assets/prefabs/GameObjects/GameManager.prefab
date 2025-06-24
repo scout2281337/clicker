@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5409241446240050457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2564515911456522083}
+  - component: {fileID: 1369379535407880578}
+  - component: {fileID: 3909858507847283412}
+  - component: {fileID: 7045816203250278450}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2564515911456522083
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5409241446240050457}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.45, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1369379535407880578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5409241446240050457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2022235a0c6f74fa597a421a54587a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shapes:
+  - Circle
+  - Square
+  - Triangle
+  borderColors:
+  - {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
+  - {r: 0.3066038, g: 0.73677486, b: 1, a: 1}
+  - {r: 0.9622642, g: 0.37544686, b: 0.35857958, a: 1}
+  animalSprites:
+  - {fileID: 21300000, guid: 4b41b79693244bc43b4a91526bd403e2, type: 2}
+  - {fileID: 21300000, guid: 840854255721d2b4f8c705b84c839ca5, type: 2}
+  - {fileID: 21300000, guid: 0cff4693fd5a481428eafce961265b81, type: 2}
+  SpawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  figurePrefab: {fileID: 7901055468750697359, guid: f7f185fc162ba5c4aa786d618116462f, type: 3}
+  Delay: 0.1
+  figuresAmount: 25
+--- !u!114 &3909858507847283412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5409241446240050457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f247ebe4cb73c4683186ea8c3ee10e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+--- !u!114 &7045816203250278450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5409241446240050457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b054ad76117d24e4ea406995605575d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  TotalScoreToWin: 500
+  VictoryScreen: {fileID: 0}

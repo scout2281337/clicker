@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Попали в объект: " + hit.collider.gameObject.transform.parent.gameObject.name);
                 GameObject figure = hit.collider.gameObject;
                 FigureData data = figure.GetComponentInParent<FigureBehavior>().figureData;
-                manager.AddFigure(hit.collider.gameObject.transform.parent.gameObject, data);
+                Transform originalTranform = hit.collider.gameObject.transform.parent.gameObject.transform;
+                manager.StartCoroutine(manager.AddFigure(hit.collider.gameObject.transform.parent.gameObject, data, originalTranform));
                 Destroy(hit.collider.gameObject.transform.parent.gameObject);
             }
         }
