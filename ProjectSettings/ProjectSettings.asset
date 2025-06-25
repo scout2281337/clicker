@@ -711,7 +711,7 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: DOTWEEN
+    Android: UNITY_ADS
     EmbeddedLinux: DOTWEEN
     GameCoreScarlett: DOTWEEN
     GameCoreXboxOne: DOTWEEN
@@ -724,9 +724,9 @@ PlayerSettings:
     Standalone: DOTWEEN
     VisionOS: DOTWEEN
     WebGL: DOTWEEN
-    Windows Store Apps: DOTWEEN
+    Windows Store Apps: UNITY_ADS
     XboxOne: DOTWEEN
-    iPhone: DOTWEEN
+    iPhone: UNITY_ADS
     tvOS: DOTWEEN
   additionalCompilerArguments: {}
   platformArchitecture: {}
