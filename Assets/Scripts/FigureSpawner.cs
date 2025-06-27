@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 public class FigureSpawner : MonoBehaviour
 {
     
-
+    //Базовые настройки
     public List<string> shapes = new() { "Circle", "Square", "Triangle" };
     public List<Color> borderColors = new() { Color.red, Color.green, Color.blue };
     public List<Sprite> animalSprites;
@@ -17,18 +18,22 @@ public class FigureSpawner : MonoBehaviour
 
     private List<GameObject> SpawnedFigures = new List<GameObject>();
 
-    [SerializeField]private float Delay = 0.25f;
-    public float figuresAmount = 10;
+    private float Delay;
+    private float figuresAmount;
 
     private Coroutine currentCoroutine;
+    public event Action OnSpawnFigures;
 
     void Start()
     {
+        figuresAmount = GameManager.instance.levelSetting_SO.AmountToSpawn;
+        Delay = GameManager.instance.levelSetting_SO.Delay;
         SpawnFiguresMethod();
     }
 
-    public IEnumerator SpawnFiguresCoroutine(float AmountOItems) 
+    private IEnumerator SpawnFiguresCoroutine(float AmountOItems, float Delay) 
     {
+        OnSpawnFigures?.Invoke();
         if (SpawnedFigures.Count > 0) 
         {
             foreach (var spawnedObj in SpawnedFigures) 
@@ -41,12 +46,12 @@ public class FigureSpawner : MonoBehaviour
         {
             var data = new FigureData
             {
-                shape = shapes[Random.Range(0, shapes.Count)],
-                borderColor = borderColors[Random.Range(0, borderColors.Count)],
-                animalSprite = animalSprites[Random.Range(0, animalSprites.Count)]
+                shape = shapes[UnityEngine.Random.Range(0, shapes.Count)],
+                borderColor = borderColors[UnityEngine.Random.Range(0, borderColors.Count)],
+                animalSprite = animalSprites[UnityEngine.Random.Range(0, animalSprites.Count)]
             };
 
-            GameObject figure = Instantiate(figurePrefab, SpawnPoints[Random.Range(0, SpawnPoints.Count)]);
+            GameObject figure = Instantiate(figurePrefab, SpawnPoints[UnityEngine.Random.Range(0, SpawnPoints.Count)]);
             figure.GetComponent<FigureBehavior>().Setup(data);
             SpawnedFigures.Add(figure); 
             yield return new WaitForSeconds(Delay);
@@ -60,7 +65,7 @@ public class FigureSpawner : MonoBehaviour
         {
             StopCoroutine(currentCoroutine);
         }
-        currentCoroutine = StartCoroutine(SpawnFiguresCoroutine(figuresAmount));
+        currentCoroutine = StartCoroutine(SpawnFiguresCoroutine(figuresAmount, Delay));
     }
 
 }

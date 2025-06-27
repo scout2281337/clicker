@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1369379535407880578}
   - component: {fileID: 3909858507847283412}
   - component: {fileID: 7045816203250278450}
+  - component: {fileID: 3132411553744863814}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -92,4 +93,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   TotalScoreToWin: 500
-  VictoryScreen: {fileID: 0}
+  currentRerol: 0
+  MaxRerols: 0
+  EndScreen: {fileID: 0}
+  inGameScoreTexts: []
+--- !u!114 &3132411553744863814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5409241446240050457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd0beab9630a3c143b3a4d39500f45e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalScoreTMP: {fileID: 0}
+  TopicTMP: {fileID: 0}

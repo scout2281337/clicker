@@ -7,11 +7,9 @@ public class ActionBar : MonoBehaviour
 {
     public Transform[] barSlots;
     private List<FigureData> currentFigures = new List<FigureData>();
-    
-    public GameManager gameManager;
     public float LocalScale;
 
-    [SerializeField]private GameObject DefeatScreen;
+    [SerializeField]private GameObject EndScreen;
     [SerializeField]private float animDuration;
     public IEnumerator AddFigure(GameObject figurePrefab, FigureData data, Transform originalTranform)
     {
@@ -19,7 +17,7 @@ public class ActionBar : MonoBehaviour
 
         if (targetIndex == -1)
         {
-            DefeatScreen.SetActive(true);
+            EndScreen.SetActive(true);
             Debug.Log("Бар полон — проигрыш");
 
             yield break;
@@ -50,7 +48,7 @@ public class ActionBar : MonoBehaviour
 
     private int GetFirstFreeSlot()
     {
-        for (int i = 0; i < barSlots.Length -1; i++) // -1 можно убрать
+        for (int i = 0; i < barSlots.Length; i++) 
         {
             if (barSlots[i].childCount == 0)
                 return i;
@@ -77,7 +75,7 @@ public class ActionBar : MonoBehaviour
             if (group.Value.Count >= 3)
             {
                 Debug.Log("Нашли тройку! Удаляем...");
-                gameManager.AddScore(100);
+                GameManager.instance.AddScore(100);
                 for (int i = 0; i < 3; i++)
                 {
                     int index = group.Value[i];
@@ -93,14 +91,6 @@ public class ActionBar : MonoBehaviour
         }
 
         currentFigures.RemoveAll(item => item == null);
-    }
-
-    void AnimatedMovingToActionBar(GameObject go, Transform origianlTransform, Transform barSlot) 
-    {
-        go.transform.localScale = origianlTransform.localScale * LocalScale;
-        go.transform.DOMove(barSlot.position, animDuration).SetEase(Ease.InOutExpo);
-        go.transform.DOScale(1f, animDuration);
-
     }
 
 }
