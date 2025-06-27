@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e145369306ac7142aedfb8606fcaa2e, type: 3}
-  m_Name: BasicLevel_SO
+  m_Name: Level1_SO
   m_EditorClassIdentifier: 
   TotalScoreToWin: 1000
-  MaxRerols: 0
+  MaxRerols: 10
   Delay: 0.1
-  AmountToSpawn: 12
+  AmountToSpawn: 18
   currentLevel: 1

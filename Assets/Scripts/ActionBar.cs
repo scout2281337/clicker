@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UIElements;
 using System.Collections;
 public class ActionBar : MonoBehaviour
 {
@@ -11,12 +10,17 @@ public class ActionBar : MonoBehaviour
 
     [SerializeField]private GameObject EndScreen;
     [SerializeField]private float animDuration;
+    private void Start()
+    {
+        GameManager.instance.OnDataRecieved += ClearAllBar;
+    }
     public IEnumerator AddFigure(GameObject figurePrefab, FigureData data, Transform originalTranform)
     {
         int targetIndex = GetFirstFreeSlot();
 
         if (targetIndex == -1)
         {
+            UI_Manager.Instance.UpdateEndScreen(false, GameManager.instance.score);
             EndScreen.SetActive(true);
             Debug.Log("Бар полон — проигрыш");
 
@@ -92,5 +96,17 @@ public class ActionBar : MonoBehaviour
 
         currentFigures.RemoveAll(item => item == null);
     }
+
+    private void ClearAllBar()
+    {
+        foreach (var slot in barSlots)
+        {
+            if (slot.childCount > 0)
+                Destroy(slot.GetChild(0).gameObject);
+        }
+
+        currentFigures.Clear();
+    }
+
 
 }

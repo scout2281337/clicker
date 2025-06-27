@@ -24,23 +24,14 @@ public class FigureSpawner : MonoBehaviour
     private Coroutine currentCoroutine;
     public event Action OnSpawnFigures;
 
-    void Start()
+    private void Start()
     {
-        figuresAmount = GameManager.instance.levelSetting_SO.AmountToSpawn;
-        Delay = GameManager.instance.levelSetting_SO.Delay;
-        SpawnFiguresMethod();
+        GameManager.instance.OnDataRecieved += ApplyNewData;
     }
-
     private IEnumerator SpawnFiguresCoroutine(float AmountOItems, float Delay) 
     {
         OnSpawnFigures?.Invoke();
-        if (SpawnedFigures.Count > 0) 
-        {
-            foreach (var spawnedObj in SpawnedFigures) 
-            {
-                Destroy(spawnedObj);
-            }
-        }
+        clearDesk();
 
         for (int i = 0; i < AmountOItems; i++)
         {
@@ -66,6 +57,24 @@ public class FigureSpawner : MonoBehaviour
             StopCoroutine(currentCoroutine);
         }
         currentCoroutine = StartCoroutine(SpawnFiguresCoroutine(figuresAmount, Delay));
+    }
+
+    public void clearDesk() 
+    {
+        if (SpawnedFigures.Count > 0)
+        {
+            foreach (var spawnedObj in SpawnedFigures)
+            {
+                Destroy(spawnedObj);
+            }
+        }
+    }
+
+    private void ApplyNewData() 
+    {
+        figuresAmount = GameManager.instance.levelSetting_SO.AmountToSpawn;
+        Delay = GameManager.instance.levelSetting_SO.Delay;
+        SpawnFiguresMethod();
     }
 
 }
